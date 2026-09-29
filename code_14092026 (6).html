@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXVON SITES | Formulário Quântico — Ano 2100</title>
+    <meta name="description" content="Preencha seus dados e receba seu site com tecnologia do futuro.">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Roboto', sans-serif; }
+        
+        :root {
+            --primario: #00F0FF;
+            --secundario: #7928CA;
+            --destaque: #FF00E5;
+            --dourado: #FFE600;
+            --sucesso-ws: #00E676;
+            --erro: #EF4444;
+            --escuro: #020617;
+            --vidro: rgba(0, 240, 255, 0.06);
+            --borda-brilhante: rgba(0, 240, 255, 0.2);
+        }
+
+        body {
+            background: var(--escuro);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .fundo-quantico {
+            position: fixed; inset: 0; z-index: -4;
+            background: 
+                radial-gradient(ellipse at 15% 20%, rgba(0, 240, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 85% 80%, rgba(121, 40, 202, 0.18) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(255, 0, 229, 0.1) 0%, transparent 60%),
+                linear-gradient(180deg, #020617 0%, #071025 50%, #020617 100%);
+        }
+        .grade-quantica {
+            position: fixed; inset: 0; z-index: -3;
+            background-image: 
+                linear-gradient(rgba(0, 240, 255, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.06) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gradeFlutuar 25s linear infinite;
+        }
+        @keyframes gradeFlutuar {
+            0% { transform: translate(0,0); }
+            100% { transform: translate(50px,50px); }
+        }
+        .particulas { position: fixed; inset: 0; z-index: -2; pointer-events: none; }
+        .particula {
+            position: absolute; width: 3px; height: 3px; border-radius: 50%;
+            animation: flutuar 18s infinite ease-in-out;
+        }
+        @keyframes flutuar {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            15% { opacity: 1; }
+            85% { opacity: 1; }
+            100% { transform: translateY(-100px) scale(1); opacity: 0; }
+        }
+        .linha-topo {
+            position: fixed; top: 0; left: 0; width: 100%; height: 3px; z-index: 9999;
+            background: linear-gradient(90deg, var(--primario), var(--secundario), var(--destaque), var(--dourado), var(--primario));
+            background-size: 400% 100%; animation: brilhoLinha 5s linear infinite;
+        }
+        @keyframes brilhoLinha {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 400% 50%; }
+        }
+
+        @keyframes entradaSuave {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes pulsarSucesso {
+            0%,100% { box-shadow: 0 0 20px rgba(0, 230, 118, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(0, 230, 118, 0.6); }
+        }
+        @keyframes avisoPulsar {
+            0%,100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+            animation: entradaSuave 0.8s ease-out;
+        }
+
+        .cabecalho {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .logo {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, var(--primario), var(--destaque), var(--dourado));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        .tag-sistema {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            color: var(--primario);
+            opacity: 0.7;
+            margin-bottom: 1rem;
+        }
+        .subtitulo {
+            color: rgba(255,255,255,0.65);
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .card-form {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--borda-brilhante);
+            border-radius: 24px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .card-form::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, var(--primario), var(--secundario), var(--destaque), var(--primario));
+            background-size: 200% 100%;
+            animation: brilhoLinha 4s linear infinite;
+        }
+
+        .categoria-titulo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primario);
+            margin: 2rem 0 1.2rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .categoria-titulo:first-child { margin-top: 0; }
+
+        .grupo-campo { margin-bottom: 1.4rem; }
+        label {
+            display: block;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        label span { color: rgba(255,255,255,0.4); font-weight: 400; font-size: 0.85rem; margin-left: 0.5rem; }
+        .obrigatorio { color: var(--erro); margin-left: 0.3rem; }
+
+        input, textarea {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 12px;
+            font-size: 1rem;
+            background: rgba(0, 240, 255, 0.04);
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primario);
+            box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.15), 0 0 20px rgba(0, 240, 255, 0.1);
+            background: rgba(0, 240, 255, 0.08);
+        }
+        input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.3); }
+
+        .aviso-erro {
+            color: var(--erro);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+            animation: avisoPulsar 1s infinite;
+        }
+        .aviso-erro.visivel { display: block; }
+
+        .linha-dupla { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+        .opcoes-plano { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 0.8rem; }
+        .opcao-plano {
+            display: flex; align-items: flex-start; gap: 0.8rem; cursor: pointer;
+            padding: 1rem 1.2rem; border-radius: 12px;
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            transition: all 0.25s;
+            background: rgba(0, 240, 255, 0.02);
+        }
+        .opcao-plano:hover { border-color: rgba(0, 240, 255, 0.3); background: rgba(0, 240, 255, 0.05); }
+        .opcao-plano.selecionado {
+            border-color: var(--primario); background: rgba(0, 240, 255, 0.08);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+        }
+        .opcao-plano input[type="radio"] { width: auto; margin-top: 0.2rem; accent-color: var(--primario); cursor: pointer; }
+        .plano-conteudo { flex: 1; }
+        .plano-nome { font-weight: 700; font-size: 1rem; margin-bottom: 0.2rem; }
+        .plano-valor { color: var(--primario); font-weight: 600; }
+        .plano-desc { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 0.3rem; }
+
+        .cor-controle { display: flex; align-items: center; gap: 1rem; margin-top: 0.5rem; flex-wrap: wrap; }
+        .cor-input-wrapper { flex: 1; min-width: 220px; }
+        .cor-seletor {
+            -webkit-appearance: none; appearance: none;
+            width: 100%; height: 60px; border: none; border-radius: 12px;
+            cursor: pointer; padding: 0; background: transparent;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .cor-seletor::-webkit-color-swatch-wrapper { padding: 4px; }
+        .cor-seletor::-webkit-color-swatch { border: 2px solid rgba(255,255,255,0.3); border-radius: 10px; }
+        .cor-seletor:hover { transform: scale(1.03); box-shadow: 0 0 20px rgba(255,255,255,0.15); }
+        .cor-amostra-grande {
+            width: 90px; height: 90px; border-radius: 12px;
+            border: 3px solid rgba(255,255,255,0.25);
+            box-shadow: 0 0 20px rgba(255,255,255,0.1);
+            transition: all 0.15s ease;
+        }
+        .cor-codigo {
+            font-family: 'Courier New', monospace; font-weight: 700; font-size: 0.9rem;
+            background: rgba(0,0,0,0.3); padding: 0.6rem 0.8rem; border-radius: 8px;
+            min-width: 130px; text-align: center; transition: all 0.15s ease;
+        }
+        .cor-info { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+
+        .btn-enviar {
+            width: 100%; padding: 1.2rem;
+            background: linear-gradient(135deg, var(--sucesso-ws), #00C853, #00BFA5);
+            background-size: 200% 200%;
+            color: #000; border: none; border-radius: 14px;
+            font-size: 1.15rem; font-weight: 800; cursor: pointer;
+            transition: all 0.3s ease; display: flex;
+            align-items: center; justify-content: center; gap: 0.8rem;
+            margin-top: 1rem; animation: pulsarSucesso 2.5s infinite;
+        }
+        .btn-enviar:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 30px rgba(0, 230, 118, 0.5), 0 0 60px rgba(0, 200, 83, 0.3);
+        }
+        .btn-enviar svg { width: 26px; height: 26px; fill: #000; }
+
+        .status-envio {
+            margin-top: 1rem; padding: 1rem; border-radius: 12px; text-align: center; display: none;
+        }
+        .status-sucesso { background: rgba(0, 230, 118, 0.1); border: 1px solid rgba(0, 230, 118, 0.3); color: #00E676; }
+        .status-erro { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; }
+        .status-envio.visivel { display: block; }
+
+        .dica {
+            background: rgba(255, 230, 0, 0.06); border-left: 3px solid var(--dourado);
+            border-radius: 0 12px 12px 0; padding: 1.2rem 1.4rem;
+            margin-top: 1.5rem; font-size: 0.9rem; color: #fef08a;
+        }
+
+        .rodape {
+            text-align: center; margin-top: 2rem;
+            color: rgba(255,255,255,0.4); font-size: 0.85rem; letter-spacing: 1px;
+        }
+        .rodape strong { color: var(--primario); }
+
+        .whatsapp-flutuante { position: fixed; bottom: 30px; right: 30px; z-index: 9999; }
+        .botao-ws {
+            width: 72px; height: 72px; border-radius: 50%;
+            background: linear-gradient(135deg, #00E676, #00C853, #00BFA5);
+            background-size: 200% 200%; animation: gradienteWS 3s ease infinite;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 20px rgba(0, 230, 118, 0.4), 0 0 40px rgba(0, 200, 83, 0.2);
+            cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+        }
+        @keyframes gradienteWS {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .botao-ws:hover { transform: scale(1.15) rotate(6deg); }
+        .botao-ws svg { width: 36px; height: 36px; fill: #fff; }
+
+        @media (max-width: 768px) {
+            .linha-dupla { grid-template-columns: 1fr; }
+            .card-form { padding: 1.5rem; }
+            .logo { font-size: 1.9rem; }
+            .cor-controle { flex-direction: column; align-items: stretch; }
+            .whatsapp-flutuante { bottom: 20px; right: 20px; }
+            .botao-ws { width: 62px; height: 62px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="linha-topo"></div>
+    <div class="fundo-quantico"></div>
+    <div class="grade-quantica"></div>
+    <div class="particulas" id="particulas"></div>
+
+    <div class="container">
+        <div class="cabecalho">
+            <h1 class="logo">NEXVON SITES</h1>
+            <p class="tag-sistema">SISTEMA · ANO 2100 · FORMULÁRIO QUÂNTICO</p>
+            <p class="subtitulo">✅ Corrigido para iPhone/Safari — envio garantido!</p>
+        </div>
+
+        <form id="formDados">
+            <div class="card-form">
+                <h3 class="categoria-titulo">👤 Seus Dados</h3>
+                
+                <div class="grupo-campo">
+                    <label for="nome">Nome / Nome da Empresa <span class="obrigatorio">*</span></label>
+                    <input type="text" id="nome" placeholder="Ex: NEXVON SITES" required>
+                </div>
+
+                <div class="linha-dupla">
+                    <div class="grupo-campo">
+                        <label for="telefone">WhatsApp <span>apenas números, c/ DDD</span><span class="obrigatorio">*</span></label>
+                        <input type="tel" id="telefone" placeholder="Ex: 19997048175" required>
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="cidade">Cidade de Atendimento</label>
+                        <input type="text" id="cidade" placeholder="Ex: Campinas — SP">
+                    </div>
+                </div>
+
+                <div class="grupo-campo">
+                    <label for="endereco">Endereço Completo</label>
+                    <input type="text" id="endereco" placeholder="Rua, número, bairro...">
+                </div>
+
+                <div class="linha-dupla">
+                    <div class="grupo-campo">
+                        <label for="ramo">Ramo de Atividade</label>
+                        <input type="text" id="ramo" placeholder="Ex: Clínica, Loja, Serviços...">
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="email">E-mail <span>(opcional)</span></label>
+                        <input type="email" id="email" placeholder="seu@email.com">
+                    </div>
+                </div>
+
+                <div class="grupo-campo">
+                    <label for="descricao">Breve Descrição dos Serviços</label>
+                    <textarea id="descricao" rows="3" placeholder="O que sua empresa faz..."></textarea>
+                </div>
+
+                <h3 class="categoria-titulo">💰 Escolha seu Pacote <span class="obrigatorio">*</span></h3>
+                <p style="color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-bottom: 0.5rem;">Selecione uma opção para continuar</p>
+                
+                <div class="opcoes-plano">
+                    <label class="opcao-plano">
+                        <input type="radio" name="planoEscolhido" value="Básico">
+                        <div class="plano-conteudo">
+                            <div class="plano-nome">Site Básico</div>
+                            <div class="plano-valor">R$ 350,00</div>
+                            <div class="plano-desc">1 página · WhatsApp · Telefone · Mapa</div>
+                        </div>
+                    </label>
+
+                    <label class="opcao-plano">
+                        <input type="radio" name="planoEscolhido" value="Completo">
+                        <div class="plano-conteudo">
+                            <div class="plano-nome">Site Completo</div>
+                            <div class="plano-valor">R$ 500,00</div>
+                            <div class="plano-desc">Tudo do Básico + Galeria + Formulário</div>
+                        </div>
+                    </label>
+
+                    <label class="opcao-plano">
+                        <input type="radio" name="planoEscolhido" value="Premium">
+                        <div class="plano-conteudo">
+                            <div class="plano-nome">Site Premium</div>
+                            <div class="plano-valor">R$ 750,00</div>
+                            <div class="plano-desc">Tudo do Completo + SEO + Domínio + Suporte</div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="aviso-erro" id="avisoPlano">⚠️ Escolha um pacote antes de enviar</div>
+
+                <h3 class="categoria-titulo">🎨 Preferências Visuais</h3>
+
+                <div class="grupo-campo">
+                    <label>Cor Principal</label>
+                    <div class="cor-controle">
+                        <div class="cor-input-wrapper">
+                            <input type="color" id="corPrincipal" value="#00F0FF" class="cor-seletor">
+                        </div>
+                        <div class="cor-info">
+                            <div class="cor-amostra-grande" id="amostraPrincipal" style="background:#00F0FF;"></div>
+                            <div class="cor-codigo" id="codigoPrincipal">#00F0FF</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grupo-campo">
+                    <label>Cor de Destaque</label>
+                    <div class="cor-controle">
+                        <div class="cor-input-wrapper">
+                            <input type="color" id="corDestaque" value="#FF00E5" class="cor-seletor">
+                        </div>
+                        <div class="cor-info">
+                            <div class="cor-amostra-grande" id="amostraDestaque" style="background:#FF00E5;"></div>
+                            <div class="cor-codigo" id="codigoDestaque">#FF00E5</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grupo-campo">
+                    <label>Cor WhatsApp</label>
+                    <div class="cor-controle">
+                        <div class="cor-input-wrapper">
+                            <input type="color" id="corWhatsapp" value="#00E676" class="cor-seletor">
+                        </div>
+                        <div class="cor-info">
+                            <div class="cor-amostra-grande" id="amostraWhatsapp" style="background:#00E676;"></div>
+                            <div class="cor-codigo" id="codigoWhatsapp">#00E676</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="categoria-titulo">✏️ Detalhes Extras</h3>
+                <div class="grupo-campo">
+                    <label>O que deseja incluir ou observar</label>
+                    <textarea id="extras" rows="3" placeholder="Detalhes especiais, funcionalidades..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-enviar" id="btnEnviar">
+                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.151-.197.297-.768.966-.94 1.163-.173.198-.346.223-.643.075-.297-.15-1.255-.463-2.39-1.476-.883-.88-1.476-1.962-1.653-2.261-.173-.298-.018-.458.133-.607.137-.136.297-.347.446-.52.149-.172.198-.296.297-.495.099-.198.05-.372-.025-.52-.075-.15-.67-1.62-.917-2.21-.242-.579-.487-.501-.67-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479c0 1.462 1.065 2.875 1.214 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.696.626.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.413-.074-.124-.272-.198-.57-.347m-5.42 7.413h-.064c-2.027-.057-3.827-.708-5.348-1.897l-.386-.284-3.764.988 1.01-3.677-.313-.403c-1.323-1.7-2.023-3.698-2.023-5.848 0-4.765 3.874-8.638 8.653-8.638 2.312 0 4.473.902 6.098 2.527 1.624 1.625 2.525 3.786 2.525 6.1 0 4.765-3.874 8.654-8.652 8.654m7.529-16.141C15.445.837 12.482 0 9.457 0 4.394 0 .264 4.13.26 9.194c0 1.613.42 3.184 1.215 4.586L0 24l10.336-2.697c1.379.751 2.912 1.149 4.529 1.15h.005c5.063 0 9.193-4.13 9.196-9.196 0-2.457-.954-4.764-2.685-6.495C21.53 3.647 19.357 1.707 16.81 0.654z"/></svg>
+                    Enviar para o WhatsApp
+                </button>
+
+                <div class="status-envio status-sucesso" id="statusSucesso">✅ Abrindo WhatsApp...</div>
+                <div class="status-envio status-erro" id="statusErro">❌ Erro. Tente novamente.</div>
+
+                <div class="dica">
+                    💡 <strong>Funciona em iPhone e Android:</strong> Ao clicar, abre o WhatsApp com todos os dados preenchidos.<br>
+                    📱 Contato: <strong>(19) 99704-8175</strong>
+                </div>
+            </div>
+        </form>
+
+        <div class="rodape">
+            <p>© 2026 <strong>NEXVON SITES</strong> — Sistema Ano 2100 · Todos os Direitos Reservados</p>
+        </div>
+    </div>
+
+    <div class="whatsapp-flutuante">
+        <a href="https://wa.me/5519997048175" target="_blank" class="botao-ws">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.151-.197.297-.768.966-.94 1.163-.173.198-.346.223-.643.075-.297-.15-1.255-.463-2.39-1.476-.883-.88-1.476-1.962-1.653-2.261-.173-.298-.018-.458.133-.607.137-.136.297-.347.446-.52.149-.172.198-.296.297-.495.099-.198.05-.372-.025-.52-.075-.15-.67-1.62-.917-2.21-.242-.579-.487-.501-.67-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479c0 1.462 1.065 2.875 1.214 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.696.626.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.413-.074-.124-.272-.198-.57-.347m-5.42 7.413h-.064c-2.027-.057-3.827-.708-5.348-1.897l-.386-.284-3.764.988 1.01-3.677-.313-.403c-1.323-1.7-2.023-3.698-2.023-5.848 0-4.765 3.874-8.638 8.653-8.638 2.312 0 4.473.902 6.098 2.527 1.624 1.625 2.525 3.786 2.525 6.1 0 4.765-3.874 8.654-8.652 8.654m7.529-16.141C15.445.837 12.482 0 9.457 0 4.394 0 .264 4.13.26 9.194c0 1.613.42 3.184 1.215 4.586L0 24l10.336-2.697c1.379.751 2.912 1.149 4.529 1.15h.005c5.063 0 9.193-4.13 9.196-9.196 0-2.457-.954-4.764-2.685-6.495C21.53 3.647 19.357 1.707 16.81 0.654z"/></svg>
+        </a>
+    </div>
+
+    <script>
+        // Partículas
+        const container = document.getElementById('particulas');
+        const qtd = 50;
+        const cores = ['#00F0FF', '#7928CA', '#FF00E5', '#FFE600', '#00E676'];
+        for (let i = 0; i < qtd; i++) {
+            const p = document.createElement('div');
+            p.classList.add('particula');
+            p.style.left = Math.random() * 100 + '%';
+            p.style.animationDelay = Math.random() * 15 + 's';
+            p.style.animationDuration = (12 + Math.random() * 10) + 's';
+            p.style.background = cores[Math.floor(Math.random() * cores.length)];
+            p.style.boxShadow = `0 0 8px ${p.style.background}`;
+            p.style.width = p.style.height = (2 + Math.random() * 3) + 'px';
+            container.appendChild(p);
+        }
+
+        // Atualização das cores
+        function configurarPaletaDeCor(inputId, amostraId, codigoId) {
+            const input = document.getElementById(inputId);
+            const amostra = document.getElementById(amostraId);
+            const codigo = document.getElementById(codigoId);
+            function atualizarCor() {
+                const corEscolhida = input.value.toUpperCase();
+                amostra.style.backgroundColor = corEscolhida;
+                codigo.textContent = corEscolhida;
+            }
+            input.addEventListener('input', atualizarCor);
+            atualizarCor();
+        }
+        configurarPaletaDeCor('corPrincipal', 'amostraPrincipal', 'codigoPrincipal');
+        configurarPaletaDeCor('corDestaque', 'amostraDestaque', 'codigoDestaque');
+        configurarPaletaDeCor('corWhatsapp', 'amostraWhatsapp', 'codigoWhatsapp');
+
+        // Destaque no plano
+        document.querySelectorAll('input[name="planoEscolhido"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                document.querySelectorAll('.opcao-plano').forEach(el => el.classList.remove('selecionado'));
+                this.closest('.opcao-plano').classList.add('selecionado');
+                document.getElementById('avisoPlano').classList.remove('visivel');
+            });
+        });
+
+        // === FUNÇÃO DE ESCAPE COMPATÍVEL COM IPHONE ===
+        function escapeParaURL(texto) {
+            if (!texto) return '';
+            // Normalizar quebras de linha e codificar corretamente para o padrão do WhatsApp
+            return encodeURIComponent(texto.replace(/\r/g, '').trim())
+                .replace(/%20/g, '+'); // Padrão mais compatível
+        }
+
+        // === VALIDAÇÃO ===
+        function validarPlano() {
+            const selecionado = document.querySelector('input[name="planoEscolhido"]:checked');
+            const aviso = document.getElementById('avisoPlano');
+            if (!selecionado) {
+                aviso.classList.add('visivel');
+                return false;
+            }
+            aviso.classList.remove('visivel');
+            return true;
+        }
+
+        // === ENVIO COMPATÍVEL COM IPHONE / SAFARI ===
+        document.getElementById('formDados').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Esconder status
+            document.getElementById('statusSucesso').classList.remove('visivel');
+            document.getElementById('statusErro').classList.remove('visivel');
+
+            // Capturar valores
+            const nome = document.getElementById('nome').value.trim();
+            const telefone = document.getElementById('telefone').value.trim();
+            const cidade = document.getElementById('cidade').value.trim() || 'Não informada';
+            const endereco = document.getElementById('endereco').value.trim() || 'Não informado';
+            const ramo = document.getElementById('ramo').value.trim() || 'Não informado';
+            const descricao = document.getElementById('descricao').trim || 'Não informada';
+            const email = document.getElementById('email').value.trim() || 'Não informado';
+            const extras = document.getElementById('extras').value.trim() || 'Nenhuma observação adicional';
+
+            // Validar campos obrigatórios
+            if (!nome || !telefone) {
+                alert('⚠️ Preencha Nome e WhatsApp!');
+                return;
+            }
+            if (!validarPlano()) {
+                document.getElementById('avisoPlano').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            // Dados do plano
+            const planoSelecionado = document.querySelector('input[name="planoEscolhido"]:checked');
+            const valorPlano = planoSelecionado.closest('.opcao-plano').querySelector('.plano-valor').textContent;
+
+            // Cores
+            const corP = document.getElementById('corPrincipal').value.toUpperCase();
+            const corD = document.getElementById('corDestaque').value.toUpperCase();
+            const corW = document.getElementById('corWhatsapp').value.toUpperCase();
+
+            // === MENSAGEM FORMATADA COMPATÍVEL COM IPHONE ===
+            // Usar %0A para quebra de linha — padrão universal do WhatsApp[[__LINK_ICON]](https://faq.whatsapp.com/425247423114725/?cms_platform=iphone&f_link_type=f_linkinlinenote&flow_extra=eyJpbmxpbmVfZGlzcGxheV9wb3NpdGlvbiI6MCwiZG9jX3Bvc2l0aW9uIjowLCJkb2NfaWQiOiJlZWRiNTVlMjU4ZWE2ZWYxLTRiMjEyYzIyMzJlOGE2OTYifQ%3D%3D&locale=zh_CN "[__LINK_ICON]")
+            const mensagem = 
+                '📋 NOVO PEDIDO — NEXVON SITES | SISTEMA 2100%0A' +
+                '%0A' +
+                '👤 DADOS DO CLIENTE%0A' +
+                '• Nome/Empresa: ' + nome + '%0A' +
+                '• WhatsApp: ' + telefone + '%0A' +
+                '• Cidade: ' + cidade + '%0A' +
+                '• Endereço: ' + endereco + '%0A' +
+                '• Ramo: ' + ramo + '%0A' +
+                '• Descrição: ' + descricao + '%0A' +
+                '• E-mail: ' + email + '%0A' +
+                '%0A' +
+                '💰 PACOTE SELECIONADO%0A' +
+                '• Plano: ' + planoSelecionado.value + '%0A' +
+                '• Valor: ' + valorPlano + '%0A' +
+                '%0A' +
+                '🎨 CORES ESCOLHIDAS%0A' +
+                '• Principal: ' + corP + '%0A' +
+                '• Destaque: ' + corD + '%0A' +
+                '• WhatsApp: ' + corW + '%0A' +
+                '%0A' +
+                '✏️ INFORMAÇÕES EXTRAS%0A' +
+                extras + '%0A' +
+                '%0A' +
+                '——————————%0A' +
+                'Solicitação gerada pelo Sistema NEXVON SITES — Ano 2100 ✅';
+
+            // Codificar mensagem
+            const msgCodificada = encodeURIComponent(mensagem);
+
+            // Número no formato internacional (sem + e sem 0)[[__LINK_ICON]](https://faq.whatsapp.com/425247423114725/?cms_platform=iphone&f_link_type=f_linkinlinenote&flow_extra=eyJpbmxpbmVfZGlzcGxheV9wb3NpdGlvbiI6MCwiZG9jX3Bvc2l0aW9uIjowLCJkb2NfaWQiOiJlZWRiNTVlMjU4ZWE2ZWYxLTRiMjEyYzIyMzJlOGE2OTYifQ%3D%3D&locale=zh_CN "[__LINK_ICON]")
+            const numero = '5519997048175';
+            
+            // Link oficial do WhatsApp — wa.me (mais confiável no iOS)[[__LINK_ICON]](https://faq.whatsapp.com/425247423114725/?cms_platform=iphone&f_link_type=f_linkinlinenote&flow_extra=eyJpbmxpbmVfZGlzcGxheV9wb3NpdGlvbiI6MCwiZG9jX3Bvc2l0aW9uIjowLCJkb2NfaWQiOiJlZWRiNTVlMjU4ZWE2ZWYxLTRiMjEyYzIyMzJlOGE2OTYifQ%3D%3D&locale=zh_CN "[__LINK_ICON]")
+            const url = 'https://wa.me/' + numero + '?text=' + msgCodificada;
+
+            // === ABRIR DE FORMA COMPATÍVEL COM SAFARI/IPHONE ===
+            // Usar window.location.href em vez de window.open — Safari bloqueia janelas sem interação direta
+            try {
+                // Feedback imediato
+                document.getElementById('statusSucesso').classList.add('visivel');
+                
+                // Método principal — funciona no iPhone
+                window.location.href = url;
+                
+                // Fallback para navegadores que preferem nova aba
+                setTimeout(function() {
+                    window.open(url, '_blank');
+                }, 100);
+                
+                setTimeout(function() {
+                    document.getElementById('statusSucesso').classList.remove('visivel');
+                }, 4000);
+            } catch (erro) {
+                document.getElementById('statusErro').classList.add('visivel');
+                console.error('Erro ao abrir WhatsApp:', erro);
+                alert('❌ Erro ao abrir. Tente novamente ou use o botão flutuante do WhatsApp.');
+            }
+        });
+    </script>
+</body>
+</html>
